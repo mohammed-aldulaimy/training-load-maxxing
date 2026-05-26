@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { fetchAthletes, fetchAthleteHistory, fetchAthleteInsights, resetDatabase } from './utils/api';
 import AthleteCard from './components/AthleteCard';
 import MetricCard from './components/MetricCard';
 import PerformanceChart from './components/PerformanceChart';
 import AICoachPanel from './components/AICoachPanel';
 import LiveSimulator from './components/LiveSimulator';
-import { Activity, ShieldAlert, Heart, Moon, Dumbbell, Sparkles, RefreshCw, Trophy, ArrowLeft } from 'lucide-react';
+import { Activity, ShieldAlert, Heart, Moon, Sparkles, RefreshCw, Trophy, ArrowLeft, Users, Watch, BarChart3, WalletCards } from 'lucide-react';
 
 export default function App() {
   const [athletes, setAthletes] = useState([]);
   const [selectedAthleteId, setSelectedAthleteId] = useState(null);
+  const rosterRef = useRef(null);
   
   // Selected athlete biometrics & history
   const [history, setHistory] = useState([]);
@@ -116,6 +117,10 @@ export default function App() {
     }
   };
 
+  const scrollToRoster = () => {
+    rosterRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   // Find active athlete data
   const activeAthlete = athletes.find(a => a.id === selectedAthleteId);
 
@@ -176,68 +181,194 @@ export default function App() {
       {!selectedAthleteId ? (
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 1.5rem 3rem 1.5rem' }}>
           
-          {/* Mission & Purpose Intro Banner */}
+          {/* Mission & Purpose Hero */}
           <div className="glass-panel" style={{
-            padding: '2rem',
+            padding: '0',
             marginBottom: '2.5rem',
-            background: 'linear-gradient(135deg, rgba(18, 24, 36, 0.6), rgba(20, 27, 45, 0.4))',
-            borderLeft: '4px solid hsl(var(--color-primary))',
+            background: 'linear-gradient(135deg, rgba(18, 24, 36, 0.78), rgba(20, 27, 45, 0.48))',
             display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
+            flexWrap: 'wrap',
+            overflow: 'hidden',
+            position: 'relative',
             textAlign: 'left'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Sparkles size={20} style={{ color: 'hsl(var(--color-primary))' }} className="pulse-primary" />
-              <span style={{ fontSize: '0.75rem', fontWeight: '800', fontFamily: 'var(--font-display)', color: 'hsl(var(--color-primary))', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                Mission: Democratizing Performance Analytics
-              </span>
-            </div>
-            
-            <h2 style={{ fontSize: '1.75rem', fontFamily: 'var(--font-display)', fontWeight: '800', lineHeight: '1.25', background: 'linear-gradient(90deg, #fff, hsl(var(--text-secondary)))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Elite Sports Science for Every Athlete
-            </h2>
-            
-            <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem', lineHeight: '1.6', maxWidth: '1100px' }}>
-              The purpose of this platform is to leverage regular, consumer-grade smartwatch telemetry (Apple Watch, Garmin, Fitbit) to deliver advanced, institutional-level health evaluation metrics. We democratize sports science for <strong>high school, collegiate, and professional athletic programs</strong> at a low cost. Rather than forcing athletic departments and players to invest in expensive proprietary diagnostic devices, wearable vests (e.g., Catapult), and subscription-heavy diagnostics, this tool harnesses raw wearable data to calculate elite-level physiological strains, fatigue zones, and structured LLM coaching recommendations.
-            </p>
-            
-            {/* Quick Value Metrics Grid */}
             <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              position: 'absolute',
+              inset: 0,
+              background: 'radial-gradient(circle at 18% 18%, hsla(var(--color-primary), 0.18), transparent 30%), radial-gradient(circle at 76% 76%, hsla(var(--color-secondary), 0.16), transparent 34%)',
+              pointerEvents: 'none'
+            }} />
+
+            <div style={{
+              flex: '1 1 380px',
+              order: 2,
+              minHeight: '420px',
+              padding: '2rem',
+              display: 'flex',
+              flexDirection: 'column',
               gap: '1rem',
-              marginTop: '0.5rem',
-              borderTop: '1px solid rgba(255,255,255,0.05)',
-              paddingTop: '1rem'
+              justifyContent: 'center',
+              position: 'relative',
+              borderLeft: '1px solid rgba(255,255,255,0.06)'
             }}>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                <span style={{ color: 'hsl(var(--color-primary))', fontWeight: '800' }}>✓</span>
-                <div>
-                  <strong style={{ color: '#fff', fontSize: '0.8rem', display: 'block', marginBottom: '0.15rem' }}>Consumer Hardware Integration</strong>
-                  <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))' }}>Runs natively on raw consumer HealthKit & Garmin sensor feeds.</span>
+              <div style={{
+                width: '100%',
+                maxWidth: '440px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.85rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '1rem',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'rgba(255,255,255,0.045)'
+                }}>
+                  <div>
+                    <span style={{ color: 'hsl(var(--text-muted))', fontSize: '0.68rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Squad Signal</span>
+                    <strong style={{ color: '#fff', display: 'block', fontSize: '1.6rem', fontFamily: 'var(--font-display)', lineHeight: 1 }}>{athletes.length || 8} athletes</strong>
+                  </div>
+                  <div style={{
+                    width: '3rem',
+                    height: '3rem',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, hsl(var(--color-primary)), hsl(var(--color-secondary)))',
+                    color: 'hsl(var(--bg-main))'
+                  }}>
+                    <Users size={22} />
+                  </div>
                 </div>
+
+                {[
+                  {
+                    icon: Watch,
+                    title: 'Consumer Hardware Integration',
+                    copy: 'Runs natively on raw consumer HealthKit & Garmin sensor feeds.'
+                  },
+                  {
+                    icon: BarChart3,
+                    title: 'Institutional Diagnostics',
+                    copy: 'Computes rolling ACWR safety limits and autonomic ANS recovery.'
+                  },
+                  {
+                    icon: WalletCards,
+                    title: 'Zero Proprietary Cost',
+                    copy: 'Eliminates expensive professional diagnostics vests and team fees.'
+                  }
+                ].map(({ icon: Icon, title, copy }) => (
+                  <div key={title} style={{
+                    display: 'flex',
+                    gap: '0.8rem',
+                    alignItems: 'flex-start',
+                    padding: '0.95rem',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'rgba(0,0,0,0.18)',
+                    border: '1px solid rgba(255,255,255,0.055)',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.16)'
+                  }}>
+                    <div style={{
+                      width: '2.2rem',
+                      height: '2.2rem',
+                      borderRadius: 'var(--radius-sm)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'hsl(var(--color-primary))',
+                      background: 'hsla(var(--color-primary), 0.1)',
+                      flexShrink: 0
+                    }}>
+                      <Icon size={17} />
+                    </div>
+                    <div>
+                      <strong style={{ color: '#fff', fontSize: '0.82rem', display: 'block', marginBottom: '0.18rem' }}>{title}</strong>
+                      <span style={{ fontSize: '0.72rem', color: 'hsl(var(--text-muted))', lineHeight: 1.45 }}>{copy}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                <span style={{ color: 'hsl(var(--color-primary))', fontWeight: '800' }}>✓</span>
+            </div>
+
+            <div style={{
+              flex: '1 1 440px',
+              order: 1,
+              minHeight: '420px',
+              padding: 'clamp(2rem, 5vw, 4rem)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              gap: '1.15rem',
+              position: 'relative'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem' }}>
+                <Sparkles size={20} style={{ color: 'hsl(var(--color-primary))' }} className="pulse-primary" />
+                <span style={{ fontSize: '0.72rem', fontWeight: '800', fontFamily: 'var(--font-display)', color: 'hsl(var(--color-primary))', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                  Mission: Democratizing Performance Analytics
+                </span>
+              </div>
+
+              <h2 style={{
+                fontSize: 'clamp(2.35rem, 6vw, 4.85rem)',
+                fontFamily: 'var(--font-display)',
+                fontWeight: '800',
+                lineHeight: '0.96',
+                letterSpacing: '-0.045em',
+                maxWidth: '650px',
+                background: 'linear-gradient(90deg, #fff, hsl(var(--text-secondary)))',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                Elite Sports Science for Every Athlete
+              </h2>
+
+              <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.95rem', lineHeight: '1.75', maxWidth: '680px' }}>
+                Leverage regular, consumer-grade smartwatch telemetry from Apple Watch, Garmin, and Fitbit to deliver advanced, institutional-level health evaluation metrics. Squad Pulse democratizes sports science for <strong style={{ color: '#fff' }}>high school, collegiate, and professional athletic programs</strong> without expensive proprietary devices, wearable vests, or subscription-heavy diagnostics.
+              </p>
+
+              <button
+                className="btn btn-primary"
+                onClick={scrollToRoster}
+                style={{
+                  marginTop: '0.35rem',
+                  padding: '0.85rem 1.2rem',
+                  fontSize: '0.9rem',
+                  background: '#fff',
+                  color: 'hsl(var(--bg-main))',
+                  border: '1px solid rgba(255,255,255,0.9)',
+                  boxShadow: '0 12px 30px rgba(0,0,0,0.28)',
+                  fontWeight: '800'
+                }}
+              >
+                <Users size={16} /> View Your Team
+              </button>
+
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.6rem' }}>
                 <div>
-                  <strong style={{ color: '#fff', fontSize: '0.8rem', display: 'block', marginBottom: '0.15rem' }}>Institutional Diagnostics</strong>
-                  <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))' }}>Computes rolling ACWR safety limits and autonomic ANS recovery.</span>
+                  <strong style={{ display: 'block', color: '#fff', fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>ACWR</strong>
+                  <span style={{ color: 'hsl(var(--text-muted))', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase' }}>Load safety</span>
                 </div>
-              </div>
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                <span style={{ color: 'hsl(var(--color-primary))', fontWeight: '800' }}>✓</span>
                 <div>
-                  <strong style={{ color: '#fff', fontSize: '0.8rem', display: 'block', marginBottom: '0.15rem' }}>Zero Proprietary Cost</strong>
-                  <span style={{ fontSize: '0.7rem', color: 'hsl(var(--text-muted))' }}>Eliminates expensive professional diagnostics vests and team fees.</span>
+                  <strong style={{ display: 'block', color: '#fff', fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>HRV</strong>
+                  <span style={{ color: 'hsl(var(--text-muted))', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase' }}>ANS recovery</span>
+                </div>
+                <div>
+                  <strong style={{ display: 'block', color: '#fff', fontSize: '1.05rem', fontFamily: 'var(--font-display)' }}>LLM</strong>
+                  <span style={{ color: 'hsl(var(--text-muted))', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase' }}>Coach recs</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+          <div ref={rosterRef} style={{ marginBottom: '2rem', textAlign: 'center', scrollMarginTop: '1.5rem' }}>
             <h2 style={{ fontSize: '2rem', fontFamily: 'var(--font-display)', fontWeight: '800', marginBottom: '0.5rem' }}>
-              FC First-Team Roster & Fatigue Tracker
+              Smart Watch Metric Tracking
             </h2>
             <p style={{ color: 'hsl(var(--text-secondary))', fontSize: '0.9rem', maxWidth: '600px', margin: '0 auto' }}>
               Monitor squad-wide recovery indices, resting biometrics, and acute-to-chronic training stress metrics (ACWR) simulated from real smartwatch feeds. Select a player to analyze positional performance or simulate a workout.
