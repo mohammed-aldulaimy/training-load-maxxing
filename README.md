@@ -47,3 +47,32 @@ The system follows a standard decoupled frontend-backend setup designed for low 
 * **`backend/app/insights_llm.py`**: Manages prompt orchestrations for live Gemini execution alongside rule-based sports science fallbacks.
 * **`frontend/src/App.jsx`**: Coordinates global dashboard view filters, roster card expansions, multi-metric monitoring tracks, and active simulation hooks.
 * **`frontend/src/components/AICoachPanel.jsx`**: Houses a custom lightweight markdown tokenizer (`SoccerMarkdownRenderer`) that parses generated structural performance grids and converts them into rich responsive UI elements without relying on heavy external dependencies.
+
+
+## 📚 Sports-Science Foundations & Academic Citations
+
+
+### 1. Training Session Workload (Session RPE-Load)
+* **Mathematical Formula:** `Daily Load = Duration (min) × Session RPE (1-10)`
+* **Citation:** Foster, C., et al. (2001). A new approach to monitoring exercise training. *Journal of Strength and Conditioning Research*, 15(1), 109-115. [PMID: 11708405]
+* **Significance:** Validates subjective Rate of Perceived Exertion (RPE) multiplied by duration as a reliable, low-cost proxy for internal physiological stress, matching blood-lactate and expensive telemetry profiles.
+
+### 2. The Training-Injury Prevention Paradox (ACWR Safety Zones)
+* **Mathematical Formula:** `ACWR = Acute Workload (7d Rolling Average) / Chronic Workload (28d Rolling Average)`
+* **Citation:** Gabbett, T. J. (2016). The training-injury prevention paradox: should athletes be training smarter and harder? *British Journal of Sports Medicine (BJSM)*, 50(5), 273-280. [DOI: 10.1136/bjsports-2015-095788]
+* **Significance:** Establishes the Acute:Chronic Workload Ratio (ACWR) safety thresholds—defining the optimal conditioning "Sweet Spot" (0.8–1.3) and the non-contact soft-tissue injury "Danger Zone" (>1.5).
+
+### 3. The Fitness-Fatigue Systems Model
+* **Core Concept:** Multi-vector system separating short-term stress decay from long-term adaptation storage.
+* **Citation:** Morton, R. H., Fitz-Clarke, J. R., & Banister, E. W. (1990). Flight of the athlete: modeling the responses to training. *Journal of Applied Physiology*, 69(3), 1171-1177. [DOI: 10.1152/jappl.1990.69.3.1171]
+* **Significance:** Provides the mathematical blueprint for training load software by modeling how a single physical stimulus induces two opposing vectors: a fast-decaying fatigue effect and a slow-decaying fitness effect.
+
+### 4. Heart Rate Variability (HRV) Normalization
+* **Core Concept:** Contextualizing RMSSD time-domain fluctuations against rolling individual baselines over population static averages.
+* **Citation:** Plews, D. J., et al. (2013). Training adaptation and heart rate variability in elite endurance athletes: opening the door to effective monitoring. *Sports Medicine*, 43(9), 773-781. [DOI: 10.1007/s40279-013-0071-8]
+* **Significance:** Proves that daily raw HRV tracking is only reliable when evaluated against an athlete's personalized rolling baseline to accurately measure parasympathetic reactivation and central nervous system (CNS) readiness.
+
+### 5. Sleep-Guided Athletic Recovery
+* **Core Concept:** Integrating macro sleep architecture metrics directly into neuromuscular and cognitive readiness profiles.
+* **Citation:** Fullagar, H. H., et al. (2015). Sleep and athletic performance: the effects of sleep loss on exercise performance, and physiological and cognitive recovery. *Sports Medicine*, 45(2), 161-186. [DOI: 10.1007/s40279-014-0260-0]
+* **Significance:** Quantifies the direct correlation between sleep deficits (<70% quality) and degraded cognitive-motor reaction speeds, restricted human growth hormone (HGH) release, and delayed glycogen resynthesis.
