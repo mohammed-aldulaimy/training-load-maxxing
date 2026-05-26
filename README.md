@@ -1,13 +1,15 @@
 # Squad Pulse 
 
 ## 📋 Project Overview
-**Squad Pulse** is an institutional-grade sports science and training-load management platform designed for high school and collegiate athletic programs. The core purpose of this project is to democratize elite-level performance analytics. Traditional athletic departments are frequently forced to invest in cost-prohibitive proprietary diagnostic devices, wearable vests (**WHOOP**, **Catapult**, etc), and subscription-heavy external diagnostics to track squad safety. For programs that don't have that kind of funding, they are essentially locked out of detailed health metrics.  
+**Squad Pulse** is an institutional-grade sports science and training-load management platform designed for high school and collegiate athletic programs. The core purpose of this project is to make elite-level performance analytics available to all. A leading cause of soft tissue injuries in athletes is **rapid spikes in acute training volume**. The ability to track these spikes in high school and collegiate programs is limited by funding. Traditional athletic departments are frequently forced to invest in cost-prohibitive proprietary diagnostic devices, wearable vests (**WHOOP**, **Catapult**, etc), and subscription-heavy external diagnostics to track squad safety. For programs that don't have that kind of funding, they are essentially locked out of detailed health metrics.  
+
+
 
 Squad Pulse eliminates these barriers by leveraging consumer hardware (Apple Watch, FitBit, etc) over company-specific hardware and utilzing raw health metric data from Apple HealthKit and Google Fit Connect to provide deatailed health metric tracking at an efficient cost. 
 
 ---
 
-## ⌚ The Core Innovation: Leveraged from Regular Smartwatch Metrics
+## The Core Innovation: Leveraged from Regular Smartwatch Metrics
 Unlike enterprise athletic platforms that require specialized hardware, **Squad Pulse is built entirely to leverage consumer-grade, regular smartwatch metrics** (such as Apple Watch, Garmin, or Fitbit). By pulling standard telemetry streams out of consumer health frameworks, the platform constructs an advanced diagnostic matrix without demanding a proprietary equipment budget:
 
 * **Heart Rate Variability (HRV):** Extracted directly from resting morning smartwatch states to gauge central nervous system recovery and autonomic nervous system (ANS) balance.
