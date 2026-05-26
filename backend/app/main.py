@@ -1,4 +1,11 @@
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Dynamically locate and load the secure .env configuration file
+env_path = Path(__file__).resolve().parent.parent / '.env'
+load_dotenv(dotenv_path=env_path)
+
 from fastapi import FastAPI, HTTPException, Header, Query
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Dict, Any, Optional
@@ -64,10 +71,10 @@ def get_athlete_history(athlete_id: str):
     return ATHLETE_DATA_STORE[athlete_id]
 
 
-HARDCODED_GEMINI_KEY = "AIzaSyBs7gIdXHxJxB3YvOEMjIV1_pu369DxQNI"
 
 
-BACKGROUND_GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "") or HARDCODED_GEMINI_KEY
+
+BACKGROUND_GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 @app.get("/api/athletes/{athlete_id}/insights", response_model=AIInsightsResponse, description="Returns LLM-powered or local-heuristic training insights.")
 def get_athlete_insights(

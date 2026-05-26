@@ -1,33 +1,25 @@
-# Dependencies / build artifacts
-node_modules/
-dist/
-build/
-.cache/
-.turbo/
+# Environment secrets (DO NOT CHECK INTO GIT)
+backend/.env
+.env
+.env.local
 
-# Python cache
-__pycache__/
+# Python caches & build folders
+backend/__pycache__/
+backend/app/__pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
 
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Node/React dependencies and builds
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+package-lock.json
 
-# Environment / secrets
-.env
-.env.*
-
-# OS/editor
-.DS_Store
+# IDE configs & OS files
 .vscode/
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
+.DS_Store
+Thumbs.db
