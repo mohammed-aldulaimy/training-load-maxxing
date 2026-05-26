@@ -1,7 +1,9 @@
 # Squad Pulse 
 
 ## 📋 Project Overview
-**Squad Pulse** is an institutional-grade sports science and training-load management platform designed for high school, collegiate, and professional athletic programs. The core purpose of this project is to democratize elite-level performance analytics. Traditional athletic departments are frequently forced to invest in cost-prohibitive proprietary diagnostic devices, wearable vests (e.g., Catapult), and subscription-heavy external diagnostics to track squad safety. Squad Pulse eliminates these barriers by translating standard telemetry into highly accurate physiological strains, fatigue zones, and structured coaching frameworks.
+**Squad Pulse** is an institutional-grade sports science and training-load management platform designed for high school and collegiate athletic programs. The core purpose of this project is to democratize elite-level performance analytics. Traditional athletic departments are frequently forced to invest in cost-prohibitive proprietary diagnostic devices, wearable vests (**WHOOP**, **Catapult**, etc), and subscription-heavy external diagnostics to track squad safety. For programs that don't have that kind of funding, they are essentially locked out of detailed health metrics.  
+
+Squad Pulse eliminates these barriers by leveraging consumer hardware (Apple Watch, FitBit, etc) over company-specific hardware and utilzing raw health metric data from Apple HealthKit and Google Fit Connect to provide deatailed health metric tracking at an efficient cost. 
 
 ---
 
