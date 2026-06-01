@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/geist-sans": "^5.2.5",
+    "lucide-react": "^0.360.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "lucide-react": "^0.360.0"
+    "react-router-dom": "^7.16.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

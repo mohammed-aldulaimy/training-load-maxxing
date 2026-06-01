@@ -44,45 +44,6 @@ export async function fetchAthleteInsights(athleteId, geminiApiKey = '') {
 }
 
 /**
- * Logs a simulated workout from the smartwatch interface, updating training load.
- */
-export async function addWorkout(athleteId, workoutData) {
-  const response = await fetch(`${API_BASE_URL}/athletes/${athleteId}/workout`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(workoutData),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to upload workout for athlete ${athleteId}`);
-  }
-  return response.json();
-}
-
-/**
- * Retrieves simulated real-time watch telemetry from the Python server.
- */
-export async function fetchLiveTick(athleteId, workoutType, elapsedSeconds) {
-  const response = await fetch(`${API_BASE_URL}/athletes/${athleteId}/live-tick`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      workout_type: workoutType,
-      elapsed_seconds: elapsedSeconds,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to retrieve smartwatch live tick');
-  }
-  return response.json();
-}
-
-/**
  * Resets the in-memory database on the Python backend to initial baselines.
  */
 export async function resetDatabase() {
