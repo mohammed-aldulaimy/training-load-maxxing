@@ -1,5 +1,4 @@
 import os
-import google.generativeai as genai
 from typing import Dict, Any, List
 
 # Fallback Local Heuristic AI Coach Engine - Outputs Strict, Premium Markdown
@@ -168,6 +167,12 @@ def generate_gemini_insights(athlete_summary: Dict[str, Any], history: List[Dict
     Constructs a detailed soccer sports-science prompt, queries the live Gemini API,
     and returns a beautifully structured Markdown document.
     """
+    try:
+        import google.generativeai as genai
+    except ImportError:
+        print("google-generativeai not installed. Falling back to Local Heuristics Engine.")
+        return generate_local_insights(athlete_summary, history)
+
     # Setup key
     genai.configure(api_key=api_key)
     
