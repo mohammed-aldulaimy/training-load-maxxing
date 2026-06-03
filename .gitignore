@@ -2,14 +2,26 @@
 backend/.env
 .env
 .env.local
+.env.*.local
 
-# Python caches & build folders
-backend/__pycache__/
-backend/app/__pycache__/
-*.pyc
+# Python virtual environments
+.venv/
+venv/
+ENV/
+
+# Python caches & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
 *.pyo
 *.pyd
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.eggs/
+dist/
+build/
 
 # Node/React dependencies and builds
 frontend/node_modules/
